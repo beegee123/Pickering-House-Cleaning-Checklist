@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickering House - Cleaning Checklist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #2c5f7d;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #2c5f7d;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .info-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-item label {
+            font-weight: 600;
+            color: #2c5f7d;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .info-item input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            background: #2c5f7d;
+            color: white;
+            padding: 12px 15px;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title .icon {
+            margin-right: 10px;
+            font-size: 1.3em;
+        }
+
+        .checklist {
+            padding-left: 10px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px;
+            border-bottom: 1px solid #e9ecef;
+            transition: background 0.2s;
+        }
+
+        .checklist-item:hover {
+            background: #f8f9fa;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checkbox-wrapper {
+            margin-right: 15px;
+            margin-top: 2px;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #2c5f7d;
+        }
+
+        .item-text {
+            flex: 1;
+            line-height: 1.5;
+        }
+
+        .item-text strong {
+            color: #2c5f7d;
+        }
+
+        .subsection {
+            margin-top: 15px;
+            padding-left: 20px;
+            border-left: 3px solid #e9ecef;
+        }
+
+        .subsection-title {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        .notes-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 5px;
+        }
+
+        .notes-section h3 {
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .notes-section textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.95em;
+            resize: vertical;
+        }
+
+        .completion-section {
+            margin-top: 30px;
+            padding: 25px;
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            border-radius: 5px;
+        }
+
+        .completion-section h3 {
+            color: #155724;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .signature-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .signature-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .signature-item label {
+            font-weight: 600;
+            color: #155724;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .signature-item input {
+            padding: 8px;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .priority-high {
+            background: #fff3cd;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border-left: 3px solid #ffc107;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 2px solid #e9ecef;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 15px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .submit-button:hover {
+            background: #218838;
+        }
+
+        .submit-button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .success-message {
+            display: none;
+            padding: 20px;
+            background: #d4edda;
+            border: 2px solid #28a745;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+            color: #155724;
+            font-weight: 600;
+        }
+
+        .error-message {
+            display: none;
+            padding: 20px;
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+            color: #721c24;
+            font-weight: 600;
+        }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #2c5f7d;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+
+            .checklist-item:hover {
+                background: none;
+            }
+
+            .submit-button {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .info-section,
+            .signature-group {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .section-title {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="cleaningForm">
+            <div class="header">
+                <h1>🏠 PICKERING HOUSE</h1>
+                <h2 style="color: #2c5f7d; font-size: 1.3em; margin-top: 10px;">Turnover Cleaning Checklist</h2>
+                <p>601-1148 Dragonfly Ave, Pickering ON L1X 0H5</p>
+            </div>
+
+            <div class="info-section">
+                <div class="info-item">
+                    <label>Cleaner Name: *</label>
+                    <input type="text" name="cleaner_name" required placeholder="Enter your name">
+                </div>
+                <div class="info-item">
+                    <label>Date: *</label>
+                    <input type="date" name="cleaning_date" required>
+                </div>
+                <div class="info-item">
+                    <label>Check-Out Guest:</label>
+                    <input type="text" name="checkout_guest" placeholder="Guest name (if known)">
+                </div>
+                <div class="info-item">
+                    <label>Next Check-In Date/Time:</label>
+                    <input type="text" name="next_checkin" placeholder="e.g., Dec 25, 3:00 PM">
+                </div>
+            </div>
+
+            <!-- LAUNDRY SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🧺</span>
+                    LAUNDRY
+                </div>
+                <div class="checklist">
+                    <div class="checklist-item priority-high">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="laundry_towels" id="laundry1" value="yes">
+                        </div>
+                        <label for="laundry1" class="item-text">
+                            <strong>Collect ALL white towels</strong> from all bathrooms (hand towels, bath towels, bath mats)
+                        </label>
+                    </div>
+                    <div class="checklist-item priority-high">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="laundry_bedding" id="laundry2" value="yes">
+                        </div>
+                        <label for="laundry2" class="item-text">
+                            <strong>Collect ALL white bedding</strong> (sheets, pillowcases, duvet covers from all bedrooms)
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="laundry_makeup_towels" id="laundry3" value="yes">
+                        </div>
+                        <label for="laundry3" class="item-text">
+                            Check makeup towels (designated dark towels) - launder as needed
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="laundry_couch_cover" id="laundry4" value="yes">
+                        </div>
+                        <label for="laundry4" class="item-text">
+                            <strong>Wash couch cover</strong> (if needed - check for stains/spills)
+                        </label>
+                    </div>
+                    <div class="checklist-item priority-high">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="laundry_complete" id="laundry5" value="yes">
+                        </div>
+                        <label for="laundry5" class="item-text">
+                            <strong>All laundry completed, dried, and folded/put away</strong>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BEDROOMS SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🛏️</span>
+                    BEDROOMS
+                </div>
+                <div class="checklist">
+                    <div class="subsection">
+                        <div class="subsection-title">All Bedrooms:</div>
+                        <div class="checklist-item priority-high">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="beds_made" id="bed1" value="yes">
+                            </div>
+                            <label for="bed1" class="item-text">
+                                <strong>Make all beds</strong> with fresh white linens (fitted sheet, flat sheet, pillowcases, duvet cover)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="bedroom_dust" id="bed2" value="yes">
+                            </div>
+                            <label for="bed2" class="item-text">
+                                Dust all surfaces (nightstands, dressers, windowsills, picture frames)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="bedroom_vacuum" id="bed3" value="yes">
+                            </div>
+                            <label for="bed3" class="item-text">
+                                Vacuum floors thoroughly (under beds if accessible)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="bedroom_trash" id="bed4" value="yes">
+                            </div>
+                            <label for="bed4" class="item-text">
+                                Empty wastebaskets and replace liners
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="bedroom_closets" id="bed5" value="yes">
+                            </div>
+                            <label for="bed5" class="item-text">
+                                Check closets for forgotten items
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="bedroom_mirrors" id="bed6" value="yes">
+                            </div>
+                            <label for="bed6" class="item-text">
+                                Clean mirrors and windows
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="bedroom_damage_check" id="bed7" value="yes">
+                            </div>
+                            <label for="bed7" class="item-text">
+                                Check for damage or maintenance issues
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BATHROOMS SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🚿</span>
+                    BATHROOMS
+                </div>
+                <div class="checklist">
+                    <div class="subsection">
+                        <div class="subsection-title">All Bathrooms:</div>
+                        <div class="checklist-item priority-high">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="bath_toilet" id="bath1" value="yes">
+                            </div>
+                            <label for="bath1" class="item-text">
+                                <strong>Clean and disinfect toilet</strong> (bowl, seat, base, behind toilet)
+                            </label>
+                        </div>
+                        <div class="checklist-item priority-high">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="bath_sink" id="bath2" value="yes">
+                            </div>
+                            <label for="bath2" class="item-text">
+                                <strong>Clean and disinfect sink</strong> (basin, faucet, handles, countertop)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="bath_shower" id="bath3" value="yes">
+                            </div>
+                            <label for="bath3" class="item-text">
+                                Clean shower/tub (walls, glass doors, fixtures, drain)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="bath_mirrors" id="bath4" value="yes">
+                            </div>
+                            <label for="bath4" class="item-text">
+                                Clean mirrors and polish to streak-free shine
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="bath_floors" id="bath5" value="yes">
+                            </div>
+                            <label for="bath5" class="item-text">
+                                Mop floors thoroughly (corners, behind toilet)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="bath_trash" id="bath6" value="yes">
+                            </div>
+                            <label for="bath6" class="item-text">
+                                Empty wastebasket and replace liner
+                            </label>
+                        </div>
+                        <div class="checklist-item priority-high">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="bath_towels" id="bath7" value="yes">
+                            </div>
+                            <label for="bath7" class="item-text">
+                                <strong>Stock fresh white towels</strong> (2 bath towels, 2 hand towels, 1 bath mat per bathroom)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="bath_toiletries" id="bath8" value="yes">
+                            </div>
+                            <label for="bath8" class="item-text">
+                                Check and refill toiletries (toilet paper, hand soap, shampoo/conditioner)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KITCHEN SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🍳</span>
+                    KITCHEN
+                </div>
+                <div class="checklist">
+                    <div class="checklist-item priority-high">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="kitchen_stove" id="kitchen1" value="yes">
+                        </div>
+                        <label for="kitchen1" class="item-text">
+                            <strong>Clean and wipe down stove top</strong> - remove any burnt food or spilled liquids on components
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="kitchen_oven" id="kitchen2" value="yes">
+                        </div>
+                        <label for="kitchen2" class="item-text">
+                            Clean oven interior (if used by guest)
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="kitchen_microwave" id="kitchen3" value="yes">
+                        </div>
+                        <label for="kitchen3" class="item-text">
+                            Clean microwave (inside and outside)
+                        </label>
+                    </div>
+                    <div class="checklist-item priority-high">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="kitchen_fridge" id="kitchen4" value="yes">
+                        </div>
+                        <label for="kitchen4" class="item-text">
+                            <strong>Clean fridge interior</strong> - remove any leftover food, wipe all shelves and drawers
+                        </label>
+                    </div>
+                    <div class="checklist-item priority-high">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="kitchen_freezer" id="kitchen5" value="yes">
+                        </div>
+                        <label for="kitchen5" class="item-text">
+                            <strong>Clean freezer</strong> - check for forgotten items, wipe down
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="kitchen_dishwasher" id="kitchen6" value="yes">
+                        </div>
+                        <label for="kitchen6" class="item-text">
+                            Clean dishwasher (wipe exterior, check filter)
+                        </label>
+                    </div>
+                    <div class="checklist-item priority-high">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="kitchen_counters" id="kitchen7" value="yes">
+                        </div>
+                        <label for="kitchen7" class="item-text">
+                            <strong>Wipe down all countertops</strong> (kitchen counter, island)
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="kitchen_sink" id="kitchen8" value="yes">
+                        </div>
+                        <label for="kitchen8" class="item-text">
+                            Clean sink and faucet, polish to shine
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="kitchen_cabinets" id="kitchen9" value="yes">
+                        </div>
+                        <label for="kitchen9" class="item-text">
+                            Clean cabinet fronts and handles
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="kitchen_floors" id="kitchen10" value="yes">
+                        </div>
+                        <label for="kitchen10" class="item-text">
+                            Sweep and mop floors (including corners)
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="kitchen_trash" id="kitchen11" value="yes">
+                        </div>
+                        <label for="kitchen11" class="item-text">
+                            Empty garbage and replace liner
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="kitchen_pantry_check" id="kitchen12" value="yes">
+                        </div>
+                        <label for="kitchen12" class="item-text">
+                            Check pantry for forgotten items (charging cables often left here)
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DINING & LIVING AREAS SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🛋️</span>
+                    DINING & LIVING AREAS
+                </div>
+                <div class="checklist">
+                    <div class="checklist-item priority-high">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="living_dining_table" id="living1" value="yes">
+                        </div>
+                        <label for="living1" class="item-text">
+                            <strong>Wipe down dining table</strong> and all surfaces
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="living_chairs" id="living2" value="yes">
+                        </div>
+                        <label for="living2" class="item-text">
+                            Clean and arrange dining chairs
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="living_couch_vacuum" id="living3" value="yes">
+                        </div>
+                        <label for="living3" class="item-text">
+                            Vacuum couch and cushions (check for crumbs, debris)
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="living_couch_cover" id="living4" value="yes">
+                        </div>
+                        <label for="living4" class="item-text">
+                            Re-install couch cover (if washed) - ensure proper fit
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="living_pillows" id="living5" value="yes">
+                        </div>
+                        <label for="living5" class="item-text">
+                            Fluff and arrange throw pillows
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="living_dust" id="living6" value="yes">
+                        </div>
+                        <label for="living6" class="item-text">
+                            Dust all surfaces (coffee table, side tables, TV stand, shelves)
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="living_tv" id="living7" value="yes">
+                        </div>
+                        <label for="living7" class="item-text">
+                            Clean TV screen
+                        </label>
+                    </div>
+                    <div class="checklist-item priority-high">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="living_vacuum" id="living8" value="yes">
+                        </div>
+                        <label for="living8" class="item-text">
+                            <strong>Vacuum all floors</strong> thoroughly (living room, dining area)
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="living_mop" id="living9" value="yes">
+                        </div>
+                        <label for="living9" class="item-text">
+                            Mop hard surface floors
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="living_check_items" id="living10" value="yes">
+                        </div>
+                        <label for="living10" class="item-text">
+                            Check behind/under furniture for forgotten items
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GARAGE & ENTRY SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🚪</span>
+                    GARAGE & ENTRY
+                </div>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="garage_sweep" id="garage1" value="yes">
+                        </div>
+                        <label for="garage1" class="item-text">
+                            Sweep garage floor
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="garage_entry" id="garage2" value="yes">
+                        </div>
+                        <label for="garage2" class="item-text">
+                            Clean entry area and wipe down smart lock
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="garage_check" id="garage3" value="yes">
+                        </div>
+                        <label for="garage3" class="item-text">
+                            Check for any items left in garage
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TRASH MANAGEMENT SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🗑️</span>
+                    TRASH MANAGEMENT
+                </div>
+                <div class="checklist">
+                    <div class="checklist-item priority-high">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="trash_collect" id="trash1" value="yes">
+                        </div>
+                        <label for="trash1" class="item-text">
+                            <strong>Collect all trash from every room</strong> (check wastebaskets in bedrooms, bathrooms, kitchen)
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="trash_sort" id="trash2" value="yes">
+                        </div>
+                        <label for="trash2" class="item-text">
+                            Sort waste properly (garbage, recycling, compost)
+                        </label>
+                    </div>
+                    <div class="checklist-item priority-high">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="trash_bins_curb" id="trash3" value="yes">
+                        </div>
+                        <label for="trash3" class="item-text">
+                            <strong>Place bins at curb if collection day</strong> (Before 7 AM Thursday for all bins, Tuesday for compost/recycling)
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="trash_verify_limit" id="trash4" value="yes">
+                        </div>
+                        <label for="trash4" class="item-text">
+                            Verify no more than 2 garbage bags left on site (excess removed or documented)
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="trash_replace_liners" id="trash5" value="yes">
+                        </div>
+                        <label for="trash5" class="item-text">
+                            Replace all wastebasket liners
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUPPLIES & INVENTORY SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">📦</span>
+                    SUPPLIES & INVENTORY CHECK
+                </div>
+                <div class="checklist">
+                    <div class="subsection">
+                        <div class="subsection-title">Ensure sufficient supplies for next guest:</div>
+                        <div class="checklist-item priority-high">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="supply_toilet_paper" id="supply1" value="yes">
+                            </div>
+                            <label for="supply1" class="item-text">
+                                <strong>Toilet paper</strong> - at least 4 rolls per bathroom
+                            </label>
+                        </div>
+                        <div class="checklist-item priority-high">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="supply_paper_towels" id="supply2" value="yes">
+                            </div>
+                            <label for="supply2" class="item-text">
+                                <strong>Paper towels</strong> - at least 2 rolls in kitchen
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="supply_hand_soap" id="supply3" value="yes">
+                            </div>
+                            <label for="supply3" class="item-text">
+                                Hand soap dispensers filled in all bathrooms
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="supply_body_wash" id="supply4" value="yes">
+                            </div>
+                            <label for="supply4" class="item-text">
+                                Body wash/shampoo/conditioner available
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="supply_dish_soap" id="supply5" value="yes">
+                            </div>
+                            <label for="supply5" class="item-text">
+                                Dish soap and dishwasher detergent pods available
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="supply_trash_bags" id="supply6" value="yes">
+                            </div>
+                            <label for="supply6" class="item-text">
+                                Trash bags stocked (large black bags)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="supply_coffee" id="supply7" value="yes">
+                            </div>
+                            <label for="supply7" class="item-text">
+                                Coffee supplies (if provided)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" name="supply_other" id="supply8" value="yes">
+                            </div>
+                            <label for="supply8" class="item-text">
+                                Check all other guest amenities
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FINAL WALKTHROUGH SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">✅</span>
+                    FINAL WALKTHROUGH & HOUSE PREP
+                </div>
+                <div class="checklist">
+                    <div class="checklist-item priority-high">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="final_furniture" id="final1" value="yes">
+                        </div>
+                        <label for="final1" class="item-text">
+                            <strong>Rearrange furniture</strong> to original layout (dining chairs, cushions, decor)
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="final_blinds" id="final2" value="yes">
+                        </div>
+                        <label for="final2" class="item-text">
+                            Close all window blinds and patio door curtains
+                        </label>
+                    </div>
+                    <div class="checklist-item priority-high">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="final_windows" id="final3" value="yes">
+                        </div>
+                        <label for="final3" class="item-text">
+                            <strong>Check all windows are closed and locked</strong>
+                        </label>
+                    </div>
+                    <div class="checklist-item priority-high">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="final_doors" id="final4" value="yes">
+                        </div>
+                        <label for="final4" class="item-text">
+                            <strong>Check all doors are locked</strong> (front door, patio door, garage door)
+                        </label>
+                    </div>
+                    <div class="checklist-item priority-high">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="final_lights" id="final5" value="yes">
+                        </div>
+                        <label for="final5" class="item-text">
+                            <strong>Turn off ALL lights</strong> throughout entire property
+                        </label>
+                    </div>
+                    <div class="checklist-item priority-high">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="final_thermostat" id="final6" value="yes">
+                        </div>
+                        <label for="final6" class="item-text">
+                            <strong>Set thermostat to baseline temperature</strong> (Winter: lower, Summer: higher)
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="final_photos" id="final7" value="yes">
+                        </div>
+                        <label for="final7" class="item-text">
+                            Take photos of completed rooms (for records)
+                        </label>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="final_walkthrough" id="final8" value="yes">
+                        </div>
+                        <label for="final8" class="item-text">
+                            Do final walkthrough of entire property - house is guest-ready
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ISSUES & MAINTENANCE SECTION -->
+            <div class="notes-section">
+                <h3>⚠️ ISSUES, DAMAGE, OR MAINTENANCE NEEDED</h3>
+                <p style="margin-bottom: 10px; font-size: 0.95em;">Report any problems found during cleaning (broken items, stains, missing items, maintenance issues, etc.):</p>
+                <textarea name="issues_notes" placeholder="Describe any issues in detail. Include room location and severity. If no issues, write 'No issues found.'"></textarea>
+            </div>
+
+            <!-- ADDITIONAL NOTES SECTION -->
+            <div class="notes-section" style="background: #e7f3ff; border-left-color: #2196F3;">
+                <h3 style="color: #0d47a1;">📝 ADDITIONAL NOTES</h3>
+                <p style="margin-bottom: 10px; font-size: 0.95em; color: #0d47a1;">Any other observations or information for the property owner:</p>
+                <textarea name="additional_notes" placeholder="Example: 'Extra cleaning time needed due to extensive cooking,' 'Guest left thank you note,' 'Noticed burned pan,' etc."></textarea>
+            </div>
+
+            <!-- COMPLETION SIGNATURE SECTION -->
+            <div class="completion-section">
+                <h3>✓ CLEANING COMPLETED</h3>
+                <p style="margin-bottom: 15px; color: #155724;">I confirm that all items on this checklist have been completed to the best of my ability and the property is ready for the next guest.</p>
+                
+                <div class="signature-group">
+                    <div class="signature-item">
+                        <label>Cleaner Signature: *</label>
+                        <input type="text" name="signature" required placeholder="Sign your name">
+                    </div>
+                    <div class="signature-item">
+                        <label>Time Completed: *</label>
+                        <input type="time" name="time_completed" required>
+                    </div>
+                </div>
+                <div class="signature-group" style="margin-top: 15px;">
+                    <div class="signature-item">
+                        <label>Total Cleaning Time:</label>
+                        <input type="text" name="total_time" placeholder="e.g., 3.5 hours">
+                    </div>
+                    <div class="signature-item">
+                        <label>Next Action Required:</label>
+                        <input type="text" name="next_action" placeholder="e.g., Notify owner, Restock supplies">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-button">📨 Submit Cleaning Report</button>
+
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner"></div>
+                <p style="margin-top: 10px;">Submitting your report...</p>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                ✅ Report submitted successfully! You can close this page now.
+            </div>
+
+            <div class="error-message" id="errorMessage">
+                ❌ Error submitting report. Please try again or contact the property owner.
+            </div>
+        </form>
+
+        <div class="footer">
+            <p><strong>Pickering House</strong> | 601-1148 Dragonfly Ave, Pickering ON L1X 0H5</p>
+            <p style="margin-top: 5px; font-size: 0.85em;">For urgent issues, contact property owner immediately</p>
+        </div>
+    </div>
+
+    <script>
+        // **IMPORTANT**: Replace 'YOUR_SCRIPT_URL' with your actual Google Apps Script web app URL
+        const GOOGLE_SCRIPT_URL = 'YOUR_SCRIPT_URL_HERE';
+
+        document.getElementById('cleaningForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitButton = document.querySelector('.submit-button');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Disable submit button and show loading
+            submitButton.disabled = true;
+            loadingSpinner.style.display = 'block';
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {
+                timestamp: new Date().toISOString(),
+            };
+            
+            // Convert FormData to object
+            for (let [key, value] of formData.entries()) {
+                if (value === 'yes') {
+                    data[key] = 'YES';
+                } else {
+                    data[key] = value || '';
+                }
+            }
+            
+            // Add checkboxes that weren't checked (they won't be in FormData)
+            const allCheckboxes = this.querySelectorAll('input[type="checkbox"]');
+            allCheckboxes.forEach(checkbox => {
+                if (!formData.has(checkbox.name)) {
+                    data[checkbox.name] = 'NO';
+                }
+            });
+            
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Required for Google Apps Script
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                // Since we're using no-cors, we can't read the response
+                // But if we got here without error, assume success
+                loadingSpinner.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                // Optionally reset form
+                // this.reset();
+                
+            } catch (error) {
+                console.error('Error:', error);
+                loadingSpinner.style.display = 'none';
+                errorMessage.style.display = 'block';
+                submitButton.disabled = false;
+            }
+        });
+
+        // Auto-fill today's date
+        window.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.querySelector('input[name="cleaning_date"]');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.value = today;
+            }
+        });
+    </script>
+</body>
+</html>
